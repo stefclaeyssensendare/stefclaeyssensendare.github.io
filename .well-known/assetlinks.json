@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "be.fimaser.flex.uat",
+               "sha256_cert_fingerprints": ["B9:B0:47:A5:D7:EA:BB:EC:3C:5D:43:F4:31:0D:D3:28:19:3C:FD:C2:6E:FE:F5:98:23:E5:66:52:23:BD:24:3A"] }
+}]
