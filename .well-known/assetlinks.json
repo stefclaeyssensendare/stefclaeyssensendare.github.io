@@ -10,17 +10,5 @@
         "B9:B0:47:A5:D7:EA:BB:EC:3C:5D:43:F4:31:0D:D3:28:19:3C:FD:C2:6E:FE:F5:98:23:E5:66:52:23:BD:24:3A"
       ]
     }
-  },
-  {
-    "relation": [
-      "delegate_permission/common.handle_all_urls"
-    ],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.fimaser.homebanking",
-      "sha256_cert_fingerprints": [
-        "02:87:C3:62:88:E4:B1:33:BD:4E:89:3D:5F:9C:35:11:5A:B1:95:91:1F:CA:4C:86:1F:55:78:5B:63:DC:2A:77"
-      ]
-    }
   }
 ]
