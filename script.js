@@ -3,7 +3,7 @@ const uploadBtn = document.getElementById("uploadBtn");
 const loader = document.getElementById("loader");
 const resultEl = document.getElementById("result");
 
-async function uploadFile(retries = 2) {
+async function uploadFile(retries = 3) {
   if (!pdfInput.files.length) {
     resultEl.textContent = "Please select a PDF file first.";
     return;
