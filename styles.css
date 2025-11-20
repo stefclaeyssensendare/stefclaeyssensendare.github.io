@@ -7,16 +7,26 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
 .logo {
   margin-top: 20px;
 }
+
 .upload-container {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   background: #fff;
   border-radius: 10px;
   margin-top: 20px;
+  width: 80%;
 }
+
+#pdfInput {
+  width: 70%;
+}
+
 button {
   margin-left: 10px;
   padding: 8px 12px;
@@ -26,30 +36,54 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+
 button:hover {
   background: #c97500;
 }
+
 .loader {
   margin: 20px auto;
   border: 12px solid #f3f3f3;
-  border-top: 12px solid #ff8c00; /* Blue spinner */
+  border-top: 12px solid #ff8c00;
   border-radius: 50%;
   width: 60px;
   height: 60px;
   animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
 .result {
   white-space: pre-wrap;
   text-align: left;
   width: 80%;
-  max-width: 600px;
   margin: 20px auto;
   background: #f9f9f9;
   padding: 15px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  display: none; /* initially hidden */
+}
+
+#chat {
+  margin-bottom: 36px;
+}
+
+#text {
+  width: 70%;
+}
+
+.chat-form {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chat-form input {
+  flex-grow: 1;
 }
