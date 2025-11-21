@@ -42,18 +42,24 @@ button:hover {
 }
 
 .loader {
-  margin: 20px auto;
-  border: 12px solid #f3f3f3;
-  border-top: 12px solid #ff8c00;
+  --loader-size: 36px;       /* outer diameter */
+  --loader-thickness: 3px;   /* border thickness */
+  --loader-color-bg: #f3f3f3;
+  --loader-color-top: #ff8c00;
+
+  display: inline-block;
+  margin: 14px auto;
+  width: var(--loader-size);
+  height: var(--loader-size);
+  border: var(--loader-thickness) solid var(--loader-color-bg);
+  border-top: var(--loader-thickness) solid var(--loader-color-top);
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
+  animation: spin 0.9s linear infinite;
+  box-sizing: border-box;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to { transform: rotate(360deg); }
 }
 
 .result {
