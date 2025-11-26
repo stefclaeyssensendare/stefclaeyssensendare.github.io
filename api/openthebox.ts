@@ -13,32 +13,47 @@ export default async function handler(
   const baseUrl = "https://openthebox.be/api/companies";
 
   try {
-    const [companyRes, accountsRes] = await Promise.all([
-      fetch(`${baseUrl}/${vat}`),
-      fetch(`${baseUrl}/${vat}/annual-accounts/most-recent`),
-    ]);
-
-    if (!companyRes.ok) {
-      const text = await companyRes.text().catch(() => "");
-      res
-        .status(companyRes.status)
-        .json({ error: `Company fetch failed: ${text}` });
+    // Fetch company data
+    let company: any = null;
+    try {
+      const companyRes = await fetch(`${baseUrl}/${vat}`);
+      if (!companyRes.ok) {
+        const text = await companyRes.text().catch(() => "");
+        res
+          .status(companyRes.status)
+          .json({ error: `Company fetch failed: ${text}` });
+        return;
+      }
+      company = await companyRes.json().catch(() => null);
+    } catch (err) {
+      console.error("Error fetching company:", err);
+      res.status(500).json({ error: "Failed to fetch company data" });
       return;
     }
 
-    if (!accountsRes.ok) {
-      const text = await accountsRes.text().catch(() => "");
-      res
-        .status(accountsRes.status)
-        .json({ error: `Accounts fetch failed: ${text}` });
+    // Fetch annual accounts
+    let annualAccounts: any = null;
+    try {
+      const accountsRes = await fetch(
+        `${baseUrl}/${vat}/annual-accounts/most-recent`
+      );
+      if (!accountsRes.ok) {
+        const text = await accountsRes.text().catch(() => "");
+        res
+          .status(accountsRes.status)
+          .json({ error: `Accounts fetch failed: ${text}` });
+        return;
+      }
+      annualAccounts = await accountsRes.json().catch(() => null);
+    } catch (err) {
+      console.error("Error fetching accounts:", err);
+      res.status(500).json({ error: "Failed to fetch annual accounts" });
       return;
     }
-
-    const company = await companyRes.json().catch(() => null);
-    const annualAccounts = await accountsRes.json().catch(() => null);
 
     res.status(200).json({ company, annualAccounts });
-  } catch (err: any) {
-    res.status(500).json({ error: String(err) });
+  } catch (err) {
+    console.error("Unexpected error in /api/openthebox:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 }
