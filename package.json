@@ -2,13 +2,21 @@
   "name": "nn-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://stefclaeyssensendare.github.io",
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },
   "dependencies": {
+    "@chatscope/chat-ui-kit-react": "^2.1.1",
+    "@chatscope/chat-ui-kit-styles": "^1.4.0",
+    "dompurify": "^3.3.0",
+    "gh-pages": "^6.3.0",
+    "marked": "^17.0.1",
     "next": "16.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0"
