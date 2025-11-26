@@ -1,6 +1,9 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const vat = (req.query.vat as string)?.toUpperCase();
   if (!vat || !/^BE\d{10}$/.test(vat)) {
     res.status(400).json({ error: "Invalid VAT number" });
