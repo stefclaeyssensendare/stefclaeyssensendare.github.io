@@ -292,7 +292,7 @@ export default function ChatPanel() {
         }
 
         const newId = await extractId(res);
-        if (!Number.isFinite(newId)) {
+        if (!Number.isFinite(newId) || newId === null) {
           setHistory((prev) =>
             prev.map((h) =>
               h.id === id
@@ -312,12 +312,14 @@ export default function ChatPanel() {
         setSavedId(newId);
         broadcastSavedId(newId);
 
+        // ✅ Guarded call: newId is guaranteed to be a number
         const summaryRaw = await pollForSummary(newId);
         const formatted = summaryRaw
           ? formatChatOutput(summaryRaw)
           : language === "FR"
           ? "Aucun résumé produit."
           : "Geen samenvatting gevonden.";
+
         setHistory((prev) =>
           prev.map((h) => (h.id === id ? { ...h, answer: formatted } : h))
         );
@@ -333,7 +335,7 @@ export default function ChatPanel() {
       return;
     }
 
-    // Normal chat messages
+    // Normal chat messages after savedId exists
     const fd = new FormData();
     fd.append("chatInput", message);
     fd.append("messages[0][role]", "user");
@@ -345,10 +347,12 @@ export default function ChatPanel() {
         "https://agent-beta.endare.com/webhook/f5ed7916-342d-4de2-ac40-4d24d1e2e471/chat",
         { method: "POST", body: fd }
       );
+
       const json = await res.json().catch(() => null);
       const answer = json
         ? formatChatOutput(json.output ?? json.summary ?? json)
         : "No JSON returned";
+
       setHistory((prev) =>
         prev.map((h) => (h.id === id ? { ...h, answer } : h))
       );
