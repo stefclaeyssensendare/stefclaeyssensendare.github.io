@@ -1,2 +1,0 @@
-:HL["/nn-next/_next/static/chunks/7c14b635478247f7.css","style"]
-0:{"buildId":"vW_Ssk_S-R99Qft8fT0_G","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
