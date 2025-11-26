@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export", // <-- enables static HTML export
-  trailingSlash: true, // optional, ensures URLs like /about/ instead of /about.html
+  output: "export",
+  trailingSlash: true, // optional, helps routing
+  assetPrefix: "./", // <-- important for GitHub Pages
 };
 
 export default nextConfig;
